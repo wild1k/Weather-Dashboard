@@ -1,82 +1,82 @@
-       
-       
-       
-    function currentWeather(citySearch) {
-   
-       
-       
-     
+
+
+
+
+
+function currentWeather(citySearch) {
+  //runs the url and apikey to get the info about current weather conditions
+  var queryURL =
+    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    citySearch +
+    "&appid=0f0ff44f9855a128ad820b3c8620b6db&units=imperial";
+  
+//runs the APi to get history of searched displayed on page
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    //gives the information of city name
+    // $("#cityHistory").text(response.name);
+ 
     
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=0f0ff44f9855a128ad820b3c8620b6db&units=imperial";
+    
+    //current temp
+    $("#temp").text(response.main.temp);
+    $("#humidity").text(response.main.humidity);
+    $("#windSpd").text(response.wind.speed);
+    $("#currentCity").text(response.name);
 
+ 
 
-        //runs the url and apikey to get the info
     $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-        //gives the information of city name
-        $("#cityHistory").text(response.name);
-        
-        //current temp
-        $("#temp").text(response.main.temp);
-        $("#humidity").text(response.main.humidity);
-        $("#windSpd").text(response.wind.speed)
+      url:
+        "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=0f0ff44f9855a128ad820b3c8620b6db&lat=" +
+        response.coord.lat +
+        "&lon=" +
+        response.coord.lon,
+      method: "GET",
+    }).then(function (response) {
+      //gives the information of city name
 
-       
-       
-        $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=0f0ff44f9855a128ad820b3c8620b6db&lat=" +  response.coord.lat   +"&lon=" + response.coord.lon,
-            method: "GET"
-          }).then(function(response) {
-              //gives the information of city name
-              
-              $("#uvIdx").text(response[0].value);
-              
-              
-             })
+      $("#uvIdx").text(response[0].value);
+    });
 
-             
+    $.ajax({
+      url:
+        "http://api.openweathermap.org/data/2.5/forecast?q=" +
+        response.city.name +
+        "&appid=0f0ff44f9855a128ad820b3c8620b6db",
+      method: "GET",
+    }).then(function (response) {
+      $("#temp1").text(response.main.temp[0]);
+      console.log("#temp1");
+    });
 
-             $.ajax({
-                url: "http://api.openweathermap.org/data/2.5/forecast?q=" + response.city.name + "&appid=0f0ff44f9855a128ad820b3c8620b6db",
-                method: "GET"
-              }).then(function(response) {
-                  
-                  
+    //try to get info on the cards and pull city name
+  });
+}
 
-                  $("#temp1").text(response.main.temp[0]);
-                   console.log("#temp1")
-                  
-                 })
-
-                 //try to get info on the cards and pull city name
-    
-
-
-
-
-
-
-
-
-})   }
-            
+var cities = [];
 //this function handles finding city weather when submit button is clicked
-        $("#enter").on("click", function(event){
-        //     //prevents submit button from refreshing the page
-            event.preventDefault();
-            //calls the info for the city put in the search bar
-            currentWeather($("#citySearch").val())
-            //puts the name of the city below the search bar
-        //    $("#citySearch").prepend("#cityHistory")
+$("#enter").on("click", function (event) {
+  //     //prevents submit button from refreshing the page
+  event.preventDefault();
+  //calls the info for the city put in the search bar
+  currentWeather($("#citySearch").val());
+  // puts the name of the city below the search bar
+  cities.push($("#citySearch").val())
+  $("#cityHistory").empty()
+ 
+  for (let i= 0;  i < cities.length; i++) {
+    var cityLi = $("<li>")
+    cityLi.text(cities[i])
+    $("#cityHistory").prepend(cityLi)
 
-        //      let currentCity = $("#currentCity")
-        //     $("#citySearch").append("#currentCity")
-
-            // $(currentCity).textcontent =
-           
-
-    })
-    
-
+  } 
+  
+  // var searchHist = $("#citySearch").prepend("#cityHistory");
+  // searchHist.prepend("li")
+  
+      
+      
+});
