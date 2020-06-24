@@ -59,24 +59,26 @@ function currentWeather(citySearch) {
 var cities = [];
 //this function handles finding city weather when submit button is clicked
 $("#enter").on("click", function (event) {
-  //     //prevents submit button from refreshing the page
+  //prevents submit button from refreshing the page
   event.preventDefault();
   //calls the info for the city put in the search bar
   currentWeather($("#citySearch").val());
   // puts the name of the city below the search bar
   cities.push($("#citySearch").val())
   $("#cityHistory").empty()
- 
-  for (let i= 0;  i < cities.length; i++) {
+
+  
+
+    for (let i= 0;  i < cities.length; i++) {
     var cityLi = $("<li>")
+    cityLi.addClass("list-group-item")
     cityLi.text(cities[i])
     $("#cityHistory").prepend(cityLi)
 
-  } 
+
+}
   
-  // var searchHist = $("#citySearch").prepend("#cityHistory");
-  // searchHist.prepend("li")
-  
-      
-      
-});
+
+
+})
+

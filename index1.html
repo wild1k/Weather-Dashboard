@@ -23,16 +23,21 @@
         <button class="btn btn-outline-success my-2 my-sm-0" id="enter" type="button">Search</button>
      <!-- </form> -->
     <!-- list for past searches and history make dynamically on the page-->
+    
     <ul class="list-group" id="cityHistory">
+    
 
       
 
 
     </ul>
   </div>
+  <div class="row">
+    <div class="col-md-12"></div>
+  </div>
 <!--current local forecast-->
 <div class="card h-200 col-md-10">
-    <div class="card-body" style="height: 25rem">
+    <div class="card-body" style="height: 20rem">
         <h1 id="currentCity"></h1>
         <h2 class="date"></h2>
     <table>
@@ -44,33 +49,26 @@
 
     </table>
 </div>
+
 </div>
 
 <!--5 day forecast-->
-<div class="row">
-    <div class="col-md-2">
 
-    </div>
-    <div class="card col-md-2" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title date"></h5>
-        <h6 class="card-subtitle mb-2 text-muted" id="temp1"></h6>
-        <p class="card-text">humidity</p>
-      </div>
-    </div>
-    <div class="card col-md-2" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title date"></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the date and make up the bulk of the card's content.</p>
-      </div>
-    </div>
+<div class="col-md-2">
+
+</div>
+<div class="card col-md-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title date"></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the date and make up the bulk of the card's content.</p>
+  </div>
+</div>
     <div class="card col-md-2" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title date"></h5>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         <p class="card-text">Some quick example text to build on the date and make up the bulk of the card's content.</p>
-    
       </div>
     </div>
     <div class="card col-md-2" style="width: 18rem;">
@@ -89,6 +87,14 @@
     
       </div>
     </div>
+    <div class="card col-md-2" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title date"></h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the date and make up the bulk of the card's content.</p>
+      </div>
+      
+    </div>  
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
