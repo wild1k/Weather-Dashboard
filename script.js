@@ -2,7 +2,6 @@
 
 
 
-
 function currentWeather(citySearch) {
   //runs the url and apikey to get the info about current weather conditions
   var queryURL =
@@ -37,14 +36,26 @@ function currentWeather(citySearch) {
       method: "GET",
     }).then(function (response) {
       //gives the information of city name
-
-      $("#uvIdx").text(response[0].value);
+      $("#uvIdx").text(response[0].value)
+      
+      
+      // $("#uvIdx").text(response.value);
+      var uvColor = $("#uvIdx").text();
+      if (uvColor < 3) {
+        $("#uvIdx").css("background-color", "green");
+      } else if (uvColor < 6) {
+        $("#uvIdx").css("background-color", "yellow");
+      } else {
+        $("#uvIdx").css("background-color", "red");
+      }
+      });
+      
     });
 
     $.ajax({
       url:
         "http://api.openweathermap.org/data/2.5/forecast?q=" +
-        response.city.name +
+        name +
         "&appid=0f0ff44f9855a128ad820b3c8620b6db",
       method: "GET",
     }).then(function (response) {
@@ -53,24 +64,39 @@ function currentWeather(citySearch) {
     });
 
     //try to get info on the cards and pull city name
-  });
-}
+  };
+
+  $(document).on("click", "cityHistory", function (event){
+    
+    if ($("enter")=== "click") {
+      cities = $("#citySearch").val()
+      cities.push(cityLi)
+    } else if (li === "click"){
+      cities = $("#cityHistory")
+    }
+cityLi.addClass("list-group-item cityHistory")
+cityLi.attr("currentCity", cities[0])
+
+
+
+  })
 
 var cities = [];
-//this function handles finding city weather when submit button is clicked
-$("#enter").on("click", function (event) {
+var cityLi = $("<li>")
+function search(city, event) {
   //prevents submit button from refreshing the page
   event.preventDefault();
   //calls the info for the city put in the search bar
-  currentWeather($("#citySearch").val());
+  
   // puts the name of the city below the search bar
   cities.push($("#citySearch").val())
   $("#cityHistory").empty()
+  .append(cityLi)
 
   
 
     for (let i= 0;  i < cities.length; i++) {
-    var cityLi = $("<li>")
+    
     cityLi.addClass("list-group-item")
     cityLi.text(cities[i])
     $("#cityHistory").prepend(cityLi)
@@ -80,5 +106,12 @@ $("#enter").on("click", function (event) {
   
 
 
-})
+}
+ 
+//this function handles finding city weather when submit button is clicked
+$("#enter").on("click", function(){
+  currentWeather($("#citySearch").val());
+  $('#cityHistory').prepend('<li class="list-group-item" onclick="currentWeather(this.innerText)">'+ $("#citySearch").val() +'</li>')
+}) 
+
 
