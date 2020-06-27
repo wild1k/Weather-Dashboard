@@ -5,7 +5,7 @@
 function currentWeather(citySearch) {
   //runs the url and apikey to get the info about current weather conditions
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
     "&appid=0f0ff44f9855a128ad820b3c8620b6db&units=imperial";
   
@@ -29,7 +29,7 @@ function currentWeather(citySearch) {
 
     $.ajax({
       url:
-        "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=0f0ff44f9855a128ad820b3c8620b6db&lat=" +
+        "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=0f0ff44f9855a128ad820b3c8620b6db&lat=" +
         response.coord.lat +
         "&lon=" +
         response.coord.lon,
@@ -54,7 +54,7 @@ function currentWeather(citySearch) {
 
     $.ajax({
       url:
-        "http://api.openweathermap.org/data/2.5/forecast?q=" +
+        "https://api.openweathermap.org/data/2.5/forecast?q=" +
         name +
         "&appid=0f0ff44f9855a128ad820b3c8620b6db",
       method: "GET",
