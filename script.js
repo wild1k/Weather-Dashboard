@@ -55,12 +55,22 @@ function currentWeather(citySearch) {
     $.ajax({
       url:
         "https://api.openweathermap.org/data/2.5/forecast?q=" +
-        name +
+        citySearch +
         "&appid=0f0ff44f9855a128ad820b3c8620b6db",
       method: "GET",
     }).then(function (response) {
-      $("#temp1").text(response.main.temp[0]);
-      console.log("#temp1");
+    
+      var resultWeather = response.list
+   for (let i = 0; i< resultWeather.length; i++) {
+    var desc = resultWeather[i].weather[i].description
+    var temp = resultWeather[i].main.temp
+        // $("#desc").text(desc)
+        $("#tempFore").text(temp)
+    console.log(resultWeather[i].main.temp);
+   }
+        
+        
+      
     });
 
     //try to get info on the cards and pull city name
